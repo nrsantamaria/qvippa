@@ -1,0 +1,20 @@
+<h3>homie page</h3>
+<hr>
+<h3>Sign me up!</h3>
+<form action="/user/new_sign_up" method="post">
+  <label for="user_name">User Name</label>
+  <input type="text" name="user_name">
+  <label for="user_email">Your Email:</label>
+  <input type="text" name="user_email">
+  <button class="btn btn-info" type="submit" name="sign_up">Sign Up!</button>
+</form>
+<hr>
+<h3>List of active users:</h3>
+<% @all_users.each do |user| %>
+  <ul>
+    <a href="/user/<%= user.id %>"><li><%= user.name %></li></a>
+  </ul>
+<% end %>
+<hr>
+
+<%  %>

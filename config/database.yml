@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: qVippA_development
+test:
+  adapter: postgresql
+  database: qVippA_test

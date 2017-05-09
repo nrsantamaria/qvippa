@@ -1,0 +1,23 @@
+<p><b>
+  <%= @found_user.name %>
+  (<%= @found_user.id %>)
+</p></b>
+<p>
+  <%= @found_user.email %>
+</p>
+<hr>
+<h3>your settings</h3>
+
+<form action="/user/edit/<%=@found_user.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="edit_name">Update Username:</label>
+  <input type="text" name="edit_name" value="<%=@found_user.name%>" placeholder="<%=@found_user.name%>">
+  <label for="edit_email">Update email:</label>
+  <input type="text" name="edit_email" value="<%=@found_user.email%>" placeholder="<%=@found_user.email%>">
+  <button class="btn btn-success" type="submit" name="update_btn">Update</button>
+</form>
+
+<form action="/user/delete/<%=@found_user.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-danger" type="submit" name="delete_btn">Delete user</button>
+</form>

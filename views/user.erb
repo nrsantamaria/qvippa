@@ -1,0 +1,38 @@
+<br>
+<div class="center">
+  <p>
+    <%= @user.name %>
+    (<%= @user.id %>)
+  </p>
+</div>
+<div class="navbar center">
+  <a href="/user/settings/<%=@user.id%>"><button type="button" name="user_settings">Settings</button></a>
+</div>
+
+<hr>
+
+<div class="center">
+  <form action="/user/new_qvipp/<%= @user.id %>" method="post">
+    <input type="text" name="new_qvipp">
+    <button type="submit" name="new_qvipp_btn">Add qVipp!</button>
+  </form>
+</div>
+
+<h3 class="center">qVipp Feed:</h3>
+<br>
+
+<div class="row">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <% @user.qvipps.reverse.each do |qvipp| %>
+      <div class="row qvipp_rows bg-info qvipp">
+        <div class="col-xs-12">
+          <%= qvipp.haiku %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="col-sm-2">
+  </div>
+</div>
