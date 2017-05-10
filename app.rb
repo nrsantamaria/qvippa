@@ -22,6 +22,7 @@ end
 
 get "/user/:id" do
   @user = User.find_by(id: params['id'].to_i)
+  @all_users = User.all
   erb :user
 end
 
@@ -63,4 +64,20 @@ post "/user/new_qvipp/:id" do
   else
     erb(:errors)
   end
+end
+
+delete("/user/:user_id/delete_qvipp/:qvipp_id") do
+  user_id = params.fetch('user_id').to_i
+  qvipp_id = params.fetch('qvipp_id').to_i
+  found_qvipp = Qvipp.find_by(id: qvipp_id)
+  found_qvipp.delete
+  redirect("/user/#{user_id}")
+end
+
+post("/user/:user_id/copy_qvipp/:qvipp_id") do
+  user_id = params.fetch('user_id').to_i
+  qvipp_id = params.fetch('qvipp_id').to_i
+  found_qvipp = Qvipp.find_by(id: qvipp_id)
+  @qvipp = Qvipp.create({:haiku => found_qvipp.haiku, :user_ids => [user_id]})
+  redirect("/user/#{user_id}")
 end

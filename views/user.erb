@@ -1,9 +1,9 @@
 <br>
 <div class="center">
-  <p>
+  <h2>
     <%= @user.name %>
     (<%= @user.id %>)
-  </p>
+  </h2>
 </div>
 <div class="navbar center">
   <a href="/user/settings/<%=@user.id%>"><button type="button" name="user_settings">Settings</button></a>
@@ -21,13 +21,17 @@
 <h3 class="center">qVipp Feed:</h3>
 <br>
 
-<div class="row feedrow">
-  <div class="col-sm-2">
-  </div>
+<div class="row feed_row">
+  <div class="col-sm-2"></div>
   <div class="col-sm-8">
     <% @user.qvipps.each do |qvipp| %>
-      <div class="row qvipp_rows bg-info qvipp">
-        <div class="col-xs-3"></div>
+      <div class="row qvipp_rows bg-info">
+        <div class="col-xs-3" style="text-align: left">
+          <form action="/user/<%= @user.id %>/delete_qvipp/<%= qvipp.id %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button class="btn btn-xs btn-info btn-outline " type="submit">x</button>
+          </form>
+        </div>
         <% qvipp.haiku.split(" ").each do |word| %>
           <div class="col-xs-2">
             <div class="center">
@@ -41,4 +45,37 @@
   </div>
   <div class="col-sm-2">
   </div>
+</div>
+
+<hr>
+
+<div class="center">
+  <h2>EVERY QVIPP IN DA WORLD!</h2>
+</div>
+<br>
+
+<div class="row all_users_feed">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+    <% @all_users.each do |user| %>
+      <% user.qvipps.each do |qvipp| %>
+        <div class="row qvipp_rows bg-success">
+            <div class="col-xs-3" style="text-align: left">
+              <form action="/user/<%= @user.id %>/copy_qvipp/<%= qvipp.id %>" method="post">
+                <button class="btn btn-xs btn-success btn-outline " type="submit">copy</button>
+              </form>
+            </div>
+              <% qvipp.haiku.split(" ").each do |word| %>
+                <div class="col-xs-2">
+                  <div class="center">
+                    <%= word %>
+                  </div>
+                </div>
+              <%end%>
+            <div class="col-xs-3"></div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-sm-2"></div>
 </div>
