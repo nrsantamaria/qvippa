@@ -8,6 +8,11 @@ require 'pg'
 
 also_reload "lib/**/*.rb"
 
+# Department.all.each do |d|
+#   d.destroy
+# end
+
+
 get "/" do
   @all_users = User.all
   erb :index
@@ -51,11 +56,11 @@ end
 post "/user/new_qvipp/:id" do
   user_id = params['id'].to_i
   current_user = User.find_by(id: user_id)
-  haiku = params['new_qvipp']
-  if haiku.word_count3?
-    current_user.qvipps.create(haiku: haiku)
+  haiku = params.fetch('new_qvipp')
+  @qvipp = Qvipp.new({:haiku => haiku, :user_ids => [current_user.id]})
+  if @qvipp.save()
+    redirect("/user/#{user_id}")
   else
-    current_user.qvipps.create(haiku: "ERROR!")
+    erb(:errors)
   end
-  redirect "/user/#{user_id}"
 end

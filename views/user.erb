@@ -21,15 +21,21 @@
 <h3 class="center">qVipp Feed:</h3>
 <br>
 
-<div class="row">
+<div class="row feedrow">
   <div class="col-sm-2">
   </div>
   <div class="col-sm-8">
-    <% @user.qvipps.reverse.each do |qvipp| %>
+    <% @user.qvipps.each do |qvipp| %>
       <div class="row qvipp_rows bg-info qvipp">
-        <div class="col-xs-12">
-          <%= qvipp.haiku %>
-        </div>
+        <div class="col-xs-3"></div>
+        <% qvipp.haiku.split(" ").each do |word| %>
+          <div class="col-xs-2">
+            <div class="center">
+              <%= word %>
+            </div>
+          </div>
+        <%end%>
+        <div class="col-xs-3"></div>
       </div>
     <%end%>
   </div>

@@ -10,19 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509214704) do
+ActiveRecord::Schema.define(version: 20170509164950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "qvinns", force: :cascade do |t|
-    t.integer "follower"
-    t.integer "followee"
-  end
-
   create_table "qvipps", force: :cascade do |t|
     t.text "haiku"
+  end
+
+  create_table "qvipps_users", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "qvipp_id"
   end
 
   create_table "users", force: :cascade do |t|

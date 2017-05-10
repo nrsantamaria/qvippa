@@ -7,9 +7,9 @@ class StartingTablesUserQvipp < ActiveRecord::Migration[5.1]
       t.column(:bio, :text)
     end
 
-    create_table(:qvinns) do |t|
-      t.column(:follower, :integer)
-      t.column(:followee, :integer)
+    create_table(:qvipps_users) do |t|
+      t.column(:user_id, :integer)
+      t.column(:qvipp_id, :integer)
     end
 
     create_table(:qvipps) do |t|
