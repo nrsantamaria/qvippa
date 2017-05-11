@@ -1,4 +1,6 @@
+
 class User < ActiveRecord::Base
-  has_and_belongs_to_many(:qvipps)
+  has_many(:feeds)
+  has_many(:qvipps, through: :feeds)
   # validates(:email, {:presence => true, :has_char => '@'})
 end

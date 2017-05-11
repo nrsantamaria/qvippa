@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509164950) do
+ActiveRecord::Schema.define(version: 20170510231538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "qvipps", force: :cascade do |t|
-    t.text "haiku"
-  end
-
-  create_table "qvipps_users", force: :cascade do |t|
+  create_table "feeds", force: :cascade do |t|
     t.integer "user_id"
     t.integer "qvipp_id"
+    t.text "junk"
+  end
+
+  create_table "qvipps", force: :cascade do |t|
+    t.text "haiku"
+    t.text "original_user"
   end
 
   create_table "users", force: :cascade do |t|

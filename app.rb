@@ -2,6 +2,7 @@ require "sinatra"
 require "sinatra/reloader"
 require 'sinatra/activerecord'
 require "./lib/user"
+require "./lib/feed"
 require "./lib/qvipp"
 require "pry"
 require 'pg'
@@ -11,7 +12,6 @@ also_reload "lib/**/*.rb"
 # Department.all.each do |d|
 #   d.destroy
 # end
-
 
 get "/" do
   @all_users = User.all
@@ -58,7 +58,7 @@ post "/user/new_qvipp/:id" do
   user_id = params['id'].to_i
   current_user = User.find_by(id: user_id)
   haiku = params.fetch('new_qvipp')
-  @qvipp = Qvipp.new({:haiku => haiku, :user_ids => [current_user.id]})
+  @qvipp = Qvipp.new({:haiku => haiku, :original_user => current_user.name, :user_ids => [current_user.id]})
   if @qvipp.save()
     redirect("/user/#{user_id}")
   else
@@ -76,8 +76,11 @@ end
 
 post("/user/:user_id/copy_qvipp/:qvipp_id") do
   user_id = params.fetch('user_id').to_i
+  current_user = User.find_by(id: user_id)
   qvipp_id = params.fetch('qvipp_id').to_i
   found_qvipp = Qvipp.find_by(id: qvipp_id)
-  @qvipp = Qvipp.create({:haiku => found_qvipp.haiku, :user_ids => [user_id]})
+# binding.pry
+  new_feed = Feed.create({:qvipp_id => qvipp_id, :user_id => user_id})
+  new_feed.save()
   redirect("/user/#{user_id}")
 end

@@ -1,5 +1,8 @@
+
 class Qvipp < ActiveRecord::Base
-  has_and_belongs_to_many(:user)
+  has_many(:feeds)
+  has_many(:users, through: :feeds)
+
   before_save(:downcase_haiku)
   # validates(:haiku, {:presence => true, :length => {:maximum => 30}})
   validate :word_count3?
