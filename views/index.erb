@@ -4,10 +4,19 @@
 <form action="/user/new_sign_up" method="post">
   <label for="user_name">User Name</label>
   <input type="text" name="user_name">
-  <label for="user_email">Your Email:</label>
-  <input type="text" name="user_email">
+    <!-- <div class="field_with_errors"> -->
+      <label for="user_email">Your Email:</label>
+      <input type="text" name="user_email">
+    <!-- </div> -->
   <button class="btn btn-info" type="submit" name="sign_up">Sign Up!</button>
 </form>
+<% if (defined?(@new_user) != nil) %>
+  <% if @new_user.errors.any? %>
+    <% @new_user.errors.full_messages.each do |msg| %>
+      <h5 class="red"><%= msg %></h5>
+    <% end %>
+  <% end %>
+<% end %>
 <hr>
 <h3>List of active users:</h3>
 <% @all_users.each do |user| %>
@@ -16,5 +25,3 @@
   </ul>
 <% end %>
 <hr>
-
-<%  %>

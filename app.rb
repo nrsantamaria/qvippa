@@ -29,8 +29,14 @@ end
 post "/user/new_sign_up" do
   username = params['user_name']
   useremail = params['user_email']
-  new_user = User.create(name: username, email: useremail)
-  redirect "/"
+  @new_user = User.new(name: username, email: useremail)
+  if @new_user.save()
+    redirect "/"
+  else
+    @new_user 
+    @all_users = User.all
+    erb :index
+  end
 end
 
 get "/user/settings/:id" do
@@ -79,7 +85,6 @@ post("/user/:user_id/copy_qvipp/:qvipp_id") do
   current_user = User.find_by(id: user_id)
   qvipp_id = params.fetch('qvipp_id').to_i
   found_qvipp = Qvipp.find_by(id: qvipp_id)
-# binding.pry
   new_feed = Feed.create({:qvipp_id => qvipp_id, :user_id => user_id})
   new_feed.save()
   redirect("/user/#{user_id}")

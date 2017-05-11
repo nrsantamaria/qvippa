@@ -4,7 +4,7 @@ require "rspec"
 require "pg"
 require "pry"
 require "sinatra/activerecord"
-require "qVippA"
+require "qvippa"
 
 # RSpec.configure do |config|
 #   config.after(:each) do

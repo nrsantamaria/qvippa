@@ -8,3 +8,4 @@ gem "rake"
 gem "rspec"
 gem "capybara"
 gem "pry"
+gem("shoulda-matchers", '~> 2.0')

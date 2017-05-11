@@ -5,3 +5,14 @@
 .qvipp {
 
 }
+
+.field_with_errors {
+  padding-left: 10px;
+  border-color: red;
+  border-style: outset;
+  border-width: 2;
+}
+
+.red {
+  color: red;
+}
