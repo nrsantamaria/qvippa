@@ -63,8 +63,8 @@
             <div class="col-xs-3" style="text-align: left">
               <form action="/user/<%= @user.id %>/copy_qvipp/<%= qvipp.id %>" method="post">
                 <button class="btn btn-xs btn-success btn-outline" type="submit">copy</button>
+                (user: <%= qvipp.original_user %>)
               </form>
-              <%= qvipp.original_user %>
             </div>
               <% qvipp.haiku.split(" ").each do |word| %>
                 <div class="col-xs-2">

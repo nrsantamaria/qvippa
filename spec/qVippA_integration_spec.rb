@@ -1,9 +1,6 @@
-require "capybara/rspec"
-require "spec_helper"
-require "./app"
-
-Capybara.app = Sinatra::Application
-set(:show_exceptions, false)
+# 
+# Capybara.app = Sinatra::Application
+# set(:show_exceptions, false)
 
 # describe("the phrase parser path", {:type => :feature}) do
 #   it("processes the user input and returns correct message if its a palindrome") do

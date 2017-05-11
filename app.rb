@@ -1,17 +1,13 @@
-require "sinatra"
-require "sinatra/reloader"
-require 'sinatra/activerecord'
-require "./lib/user"
-require "./lib/feed"
-require "./lib/qvipp"
-require "pry"
-require 'pg'
 
-also_reload "lib/**/*.rb"
+require("bundler/setup")
+Bundler.require(:default)
 
-# Department.all.each do |d|
-#   d.destroy
-# end
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
+
+# also_reload "lib/**/*.rb"
+# require "./lib/user"
+# require "./lib/feed"
+# require "./lib/qvipp"
 
 get "/" do
   @all_users = User.all
@@ -75,7 +71,7 @@ end
 delete("/user/:user_id/delete_qvipp/:qvipp_id") do
   user_id = params.fetch('user_id').to_i
   qvipp_id = params.fetch('qvipp_id').to_i
-  found_feed = Feed.all.my_find(qvipp_id, user_id)
+  found_feed = Feed.all.find_feed(qvipp_id, user_id)
   found_feed[0].delete
   redirect("/user/#{user_id}")
 end
@@ -85,6 +81,8 @@ post("/user/:user_id/copy_qvipp/:qvipp_id") do
   current_user = User.find_by(id: user_id)
   qvipp_id = params.fetch('qvipp_id').to_i
   found_qvipp = Qvipp.find_by(id: qvipp_id)
-  new_feed = Feed.create({:qvipp_id => qvipp_id, :user_id => user_id})
+  rand_num = []
+  3.times { rand_num.push(rand(9)) }
+  new_feed = Feed.create({:qvipp_id => qvipp_id, :user_id => user_id,:junk => ("rando junk: " + rand_num.join("")) })
   redirect("/user/#{user_id}")
 end
