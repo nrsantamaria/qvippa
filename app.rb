@@ -33,7 +33,7 @@ post "/user/new_sign_up" do
   if @new_user.save()
     redirect "/"
   else
-    @new_user 
+    @new_user
     @all_users = User.all
     erb :index
   end
@@ -75,8 +75,8 @@ end
 delete("/user/:user_id/delete_qvipp/:qvipp_id") do
   user_id = params.fetch('user_id').to_i
   qvipp_id = params.fetch('qvipp_id').to_i
-  found_qvipp = Qvipp.find_by(id: qvipp_id)
-  found_qvipp.delete
+  found_feed = Feed.all.my_find(qvipp_id, user_id)
+  found_feed[0].delete
   redirect("/user/#{user_id}")
 end
 
@@ -86,6 +86,5 @@ post("/user/:user_id/copy_qvipp/:qvipp_id") do
   qvipp_id = params.fetch('qvipp_id').to_i
   found_qvipp = Qvipp.find_by(id: qvipp_id)
   new_feed = Feed.create({:qvipp_id => qvipp_id, :user_id => user_id})
-  new_feed.save()
   redirect("/user/#{user_id}")
 end

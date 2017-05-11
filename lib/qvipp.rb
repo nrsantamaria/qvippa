@@ -4,7 +4,6 @@ class Qvipp < ActiveRecord::Base
   has_many(:users, through: :feeds)
 
   before_save(:downcase_haiku)
-  # validates(:haiku, {:presence => true, :length => {:maximum => 30}})
   validate :word_count3?
 
   def downcase_haiku
