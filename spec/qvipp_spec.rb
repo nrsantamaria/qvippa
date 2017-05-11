@@ -21,6 +21,24 @@ describe Qvipp do
     expect(qvipp1.haiku).to(eq("i's da best"))
   end
 
-  
+#### VALIDATION
+    it ("checks for true email using @ char") do
+      qvipp1 = Qvipp.new({:haiku => "i do dis yo"})
+      qvipp1.save()
+      expect(qvipp1.errors.any?).to(eq(true))
+    end
+
+    it ("checks for true email using @ char") do
+      qvipp1 = Qvipp.new({:haiku => "i do dis"})
+      qvipp1.save()
+      expect(qvipp1.errors.any?).to(eq(false))
+    end
+
+    it ("checks for true email using @ char") do
+      qvipp1 = Qvipp.new({:haiku => "i do dis another words"})
+      qvipp1.save()
+      expect(qvipp1.errors.to_hash[:haiku][0]).to(eq("too many words yo!"))
+    end
+#################
 
 end

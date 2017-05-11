@@ -9,6 +9,12 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 # require "./lib/feed"
 # require "./lib/qvipp"
 
+###      HEROKU DEPLOY!
+###      this goes here...
+# DATABASE_URL = "postgres://localhost/(name of database)"
+###       after pushing to heroku run this in terminal
+# heroku run rake db:schema:load
+
 get "/" do
   @all_users = User.all
   erb :index
