@@ -1,54 +1,42 @@
-# <!--PROJECT NAME HERE-->
+# Qvippa
 
-<!--PROJECT DESCRIPTION HERE-->
+#### _Nicky Santamaria and Dominic Brown_
 
-### Prerequisites
+## Description
 
-Web browser with ES6 compatibility
-Examples: Chrome, Safari
+A take on twitter but with quipps!
 
-Ruby <!--VERSION HERE-->
-Bundler
+## Technologies used / Prerequisites
 
-### Installing
+* [Ruby](https://www.ruby-lang.org/en/downloads/)
+* [Rails](http://rubyonrails.org/)
+* [PostgreSQL](https://www.postgresql.org/docs/9.2/static/app-psql.html)
+* [Git](https://git-scm.com/)
 
-Installation is quick and easy! First you can open this link <!--HEROKU LINK HERE--> to see the webpage in action live online. Or you can clone this repository to your machine, navigate to the file path in your terminal, and run 'app.rb' by typing '$ruby app.rb'. If you chose to clone the repository, after you run 'app.rb' you will need to copy the localhost path into your web browser. The standard localhost for Sinatra is port 4567
+## Installation
 
-## Built With
+* `$ git clone https://github.com/nrsantamaria/qvippa`
+* `$ cd qvippa`
 
-* Ruby
-* Sinatra
-* HTML
-* CSS
-* Bootstrap https://getbootstrap.com/
-* ES6
-* Jquery https://jquery.com/
+## PostgreSQL Integration
+* `$ postgres`
+* `$ rake db:create`
+* `$ rake db:migrate db:test:prepare`
 
-## Authors
+## Seed database
+* `$ rake db:seed`
 
-* <!--YOUR NAME HERE-->
+## Development server
+
+Run `rails s` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
+
+## Known Bugs
+* N/A
 
 ## License
 
-MIT License
+*This software is licensed under MIT license.*
 
-Copyright (c) <!--YOUR NAME & YEAR HERE-->
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+```
+Copyright (c) 2017 Nicky Santamaria
+```
